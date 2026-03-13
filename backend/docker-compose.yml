@@ -1,88 +1,58 @@
-from flask import Flask, jsonify, request, abort
-from flask_cors import CORS
-import json
+services:
+  database:
+    image: postgis/postgis:13-master
+    volumes:
+      - ./data/database:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: "directus"
+      POSTGRES_PASSWORD: "directus"
+      POSTGRES_DB: "directus"
+    healthcheck:
+      test: ["CMD", "pg_isready", "--host=localhost", "--username=directus"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_interval: 5s
+      start_period: 30s
 
-app = Flask(__name__)
-CORS(app)
-DATA_FILE = "car.json"
+  cache:
+    image: redis:6
+    healthcheck:
+      test: ["CMD-SHELL", "[ $$(redis-cli ping) = 'PONG' ]"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_interval: 5s
+      start_period: 30s
 
+  directus:
+    image: directus/directus:REPLACE_WITH_VERSION
+    ports:
+      - 8055:8055
+    volumes:
+      - ./uploads:/directus/uploads
+      - ./extensions:/directus/extensions
+    depends_on:
+      database:
+        condition: service_healthy
+      cache:
+        condition: service_healthy
+    environment:
+      SECRET: "REPLACE_WITH_YOUR_SECRET"
 
-def load_cars():
-    with open(DATA_FILE, "r") as f:
-        return json.load(f)
+      DB_CLIENT: "pg"
+      DB_HOST: "database"
+      DB_PORT: "5432"
+      DB_DATABASE: "directus"
+      DB_USER: "directus"
+      DB_PASSWORD: "directus"
 
+      CACHE_ENABLED: "true"
+      CACHE_AUTO_PURGE: "true"
+      CACHE_STORE: "redis"
+      REDIS: "redis://cache:6379"
 
-def save_cars(cars):
-    with open(DATA_FILE, "w") as f:
-        json.dump(cars, f, indent=2)
+      ADMIN_EMAIL: "REPLACE_WITH_YOUR_EMAIL"
+      ADMIN_PASSWORD: "REPLACE_WITH_YOUR_PASSWORD"
 
-
-# GET /cars – alle Autos
-@app.route("/cars", methods=["GET"])
-def get_cars():
-    return jsonify(load_cars())
-
-
-# GET /cars/<id> – einzelnes Auto
-@app.route("/cars/<int:car_id>", methods=["GET"])
-def get_car(car_id):
-    cars = load_cars()
-    car = next((c for c in cars if c["id"] == car_id), None)
-    if not car:
-        abort(404)
-    return jsonify(car)
-
-
-# POST /cars – neues Auto
-@app.route("/cars", methods=["POST"])
-def create_car():
-    cars = load_cars()
-    data = request.json
-
-    if not data or "brand" not in data:
-        abort(400)
-
-    new_id = max(c["id"] for c in cars) + 1
-    new_car = {
-        "id": new_id,
-        "brand": data["brand"],
-        "model": data["model"],
-        "year": data["year"],
-        "hp": data["hp"]
-    }
-
-    cars.append(new_car)
-    save_cars(cars)
-    return jsonify(new_car), 201
-
-
-# PUT /cars/<id> – Auto ersetzen
-@app.route("/cars/<int:car_id>", methods=["PUT"])
-def update_car(car_id):
-    cars = load_cars()
-    data = request.json
-
-    for car in cars:
-        if car["id"] == car_id:
-            car.update(data)
-            save_cars(cars)
-            return jsonify(car)
-
-    abort(404)
-
-
-# DELETE /cars/<id> – Auto löschen
-@app.route("/cars/<int:car_id>", methods=["DELETE"])
-def delete_car(car_id):
-    cars = load_cars()
-    new_cars = [c for c in cars if c["id"] != car_id]
-
-    if len(new_cars) == len(cars):
-        abort(404)
-
-    save_cars(new_cars)
-    return "", 204
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+      PUBLIC_URL: "REPLACE_WITH_YOUR_URL"
