@@ -56,3 +56,16 @@ services:
       ADMIN_PASSWORD: "REPLACE_WITH_YOUR_PASSWORD"
 
       PUBLIC_URL: "REPLACE_WITH_YOUR_URL"
+
+  spotify-auth:
+    build:
+      context: ./spotify-auth
+    ports:
+      - "5050:5050"
+    environment:
+      PORT: "5050"
+      FRONTEND_URL: "http://localhost:3000"
+      BACKEND_URL: "http://localhost:5050"
+      SPOTIFY_CLIENT_ID: "${SPOTIFY_CLIENT_ID}"
+      SPOTIFY_CLIENT_SECRET: "${SPOTIFY_CLIENT_SECRET}"
+      SPOTIFY_SCOPES: "user-read-email user-read-private user-top-read"

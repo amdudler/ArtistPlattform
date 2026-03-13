@@ -1,3 +1,169 @@
+.page {
+  min-height: 100vh;
+  padding: 56px 20px;
+  background: radial-gradient(1200px 600px at 10% 0%, #1db95422 0%, transparent 55%),
+    radial-gradient(1000px 500px at 90% 10%, #7c3aed22 0%, transparent 55%),
+    #0b1020;
+  color: #e9eefc;
+}
+
+.container {
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 16px;
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.title {
+  margin: 0;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  margin: 8px 0 0;
+  color: rgba(233, 238, 252, 0.75);
+  font-size: 14px;
+}
+
+.button {
+  appearance: none;
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 14px;
+  background: linear-gradient(135deg, #1db954, #16a34a);
+  color: #07110a;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 22px rgba(29, 185, 84, 0.18);
+  transition: transform 120ms ease, box-shadow 120ms ease, filter 120ms ease;
+  white-space: nowrap;
+}
+
+.button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 30px rgba(29, 185, 84, 0.22);
+  filter: brightness(1.02);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.searchWrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 1;
+}
+
+.search {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.22);
+  color: #e9eefc;
+  outline: none;
+}
+
+.search::placeholder {
+  color: rgba(233, 238, 252, 0.55);
+}
+
+.search:focus {
+  border-color: rgba(29, 185, 84, 0.55);
+  box-shadow: 0 0 0 4px rgba(29, 185, 84, 0.16);
+}
+
+.clear {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(233, 238, 252, 0.9);
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  transition: background 120ms ease, border-color 120ms ease, transform 120ms ease;
+  white-space: nowrap;
+}
+
+.clear:hover {
+  background: rgba(255, 255, 255, 0.09);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-1px);
+}
+
+.count {
+  color: rgba(233, 238, 252, 0.7);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: transform 120ms ease, background 120ms ease, border-color 120ms ease;
+}
+
+.listItem:hover {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.16);
+}
+
+.artistName {
+  font-weight: 650;
+}
+
+.artistMeta {
+  color: rgba(233, 238, 252, 0.65);
+  font-size: 12px;
+}
+
+.empty {
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  color: rgba(233, 238, 252, 0.7);
+}
+
 .App {
   text-align: center;
 }
