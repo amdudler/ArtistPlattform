@@ -1,0 +1,36 @@
+{
+  "artists": [
+    {
+      "name": "Nedeljko Bajic Baja",
+      "spotify_id": "4frXpPxQQZwbCu3eTGnZEw"
+    },
+    {
+      "name": "SSIO",
+      "spotify_id": "0Cbk0v3K8hU6J7tP0s4h6n"
+    },
+    {
+      "name": "Sisqo",
+      "spotify_id": "6x9QLdzo6eBZxJ1bHsDkjg"
+    },
+    {
+      "name": "PinkPantheress",
+      "spotify_id": "78rUTD7y6Cy67W1RVzYs7t"
+    },
+    {
+      "name": "Travis Scott",
+      "spotify_id": "0Y5tJX1MQlPlqiwlOH1tJY"
+    },
+    {
+      "name": "Kanye West",
+      "spotify_id": "5K4W6rqBFWDnAN6FQUkS6x"
+    },
+    {
+      "name": "Destroy Lonely",
+      "spotify_id": "1HPW4jeRjXBFRoUnSvBzoD"
+    },
+    {
+      "name": "YoungBoy Never Broke Again",
+      "spotify_id": "7wlFDEWiM5OoIAt8RSli8b"
+    }
+  ]
+}
