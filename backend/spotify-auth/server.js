@@ -22,6 +22,17 @@ if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET) {
   console.warn("Missing SPOTIFY_CLIENT_ID or SPOTIFY_CLIENT_SECRET in env.");
 }
 
+function assertSpotifyClientConfigured() {
+  if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET) return "missing";
+  const bad =
+    SPOTIFY_CLIENT_ID.includes("DEINE_CLIENT_ID") ||
+    SPOTIFY_CLIENT_SECRET.includes("DEIN_CLIENT_SECRET") ||
+    SPOTIFY_CLIENT_ID.includes("your_client_id_here") ||
+    SPOTIFY_CLIENT_SECRET.includes("your_client_secret_here");
+  if (bad) return "placeholder";
+  return null;
+}
+
 const REFRESH_COOKIE = "spotify_refresh_token";
 
 function buildAuthorizeUrl({ state }) {
@@ -117,6 +128,16 @@ app.use(
 app.get("/health", (_req, res) => res.json({ ok: true }));
 
 app.get("/spotify/login", (req, res) => {
+  const cfg = assertSpotifyClientConfigured();
+  if (cfg) {
+    return res.status(500).json({
+      error: "spotify_client_not_configured",
+      hint:
+        cfg === "missing"
+          ? "Set SPOTIFY_CLIENT_ID and SPOTIFY_CLIENT_SECRET in backend/.env and restart docker compose."
+          : "backend/.env still contains placeholder values. Paste real Client ID/Secret from Spotify Developer Dashboard."
+    });
+  }
   const state = Buffer.from(String(Date.now())).toString("base64url");
   res.redirect(buildAuthorizeUrl({ state }));
 });
