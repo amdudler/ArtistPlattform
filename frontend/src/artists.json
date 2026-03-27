@@ -1,133 +1,96 @@
 {
   "artists": [
-          "spotify_id": "4frXpPxQQZwbCu3eTGnZEw",
+    {
+      "spotify_id": "4frXpPxQQZwbCu3eTGnZEw",
       "name": "Thundercat",
-      "genres": [],
+      "genres": ["jazz fusion", "modern funk", "experimental"],
       "followers": 1604959,
       "popularity": 70,
       "profile_image": "https://i.scdn.co/image/ab6761610000e5eb6941830307896269157f7dd4",
       "spotify_url": "https://open.spotify.com/artist/4frXpPxQQZwbCu3eTGnZEw",
       "verified": true,
-      "first_album": null,
-      "latest_album": null,
-      "total_albums": 0,
+      "first_album": "The Golden Age of Apocalypse",
+      "latest_album": "It Is What It Is",
+      "total_albums": 4,
       "active": true,
-      "country": "",
-      "biography": "",
-      "label": "",
-      "is_solo": true
-    },
-    {
-      "spotify_id": "0Cbk0v3K8hU6J7tP0s4h6n",
-      "followers": 0,
-      "profile_image": null,
-      "spotify_url": null,
-      "verified": false,
-      "first_album": null,
-      "latest_album": null,
-      "total_albums": 0,
-      "active": true,
-      "country": "",
-      "biography": "",
-      "label": "",
-      "is_solo": true
+      "country": "US",
+      "biography": "American bassist, singer, producer and songwriter known for genre-blending music.",
+      "label": "Brainfeeder",
+      "is_solo": true,
+      "tracks": [
+        {
+          "track_id": "1",
+          "title": "Show You the Way",
+          "duration_ms": 271667,
+          "album": "It Is What It Is",
+          "release_year": 2020,
+          "popularity": 65
+        },
+        {
+          "track_id": "2",
+          "title": "Them Changes",
+          "duration_ms": 188600,
+          "album": "Drunk",
+          "release_year": 2017,
+          "popularity": 75
+        }
+      ]
     },
     {
       "spotify_id": "6x9QLdzo6eBZxJ1bHsDkjg",
       "name": "Sisqo",
-      "followers": 0,
+      "genres": ["r&b", "pop"],
+      "followers": 1210000,
+      "popularity": 58,
       "profile_image": "https://i.scdn.co/image/ab6761610000e5eb1093c7b30b7d20a1c9c3229e",
       "spotify_url": "https://open.spotify.com/artist/6x9QLdzo6eBZxJ1bHsDkjg",
       "verified": false,
-      "first_album": null,
-      "latest_album": null,
-      "total_albums": 0,
+      "first_album": "Unleash the Dragon",
+      "latest_album": "Last Dragon",
+      "total_albums": 3,
       "active": true,
-      "country": "",
-      "biography": "",
-      "label": "",
-      "is_solo": true
+      "country": "US",
+      "biography": "Singer best known for the hit single 'Thong Song'.",
+      "label": "Def Soul",
+      "is_solo": true,
+      "tracks": [
+        {
+          "track_id": "11",
+          "title": "Thong Song",
+          "duration_ms": 263000,
+          "album": "Unleash the Dragon",
+          "release_year": 1999,
+          "popularity": 80
+        }
+      ]
     },
     {
       "spotify_id": "78rUTD7y6Cy67W1RVzYs7t",
       "name": "PinkPantheress",
-      "followers": 0,
+      "genres": ["alt-pop", "electronic"],
+      "followers": 1450000,
+      "popularity": 72,
       "profile_image": "https://i.scdn.co/image/ab6761610000e5eb6bf10d74063b45938f5d8656",
       "spotify_url": "https://open.spotify.com/artist/78rUTD7y6Cy67W1RVzYs7t",
       "verified": false,
-      "first_album": null,
-      "latest_album": null,
-      "total_albums": 0,
+      "first_album": "To Feel Alive",
+      "latest_album": "To Feel Alive",
+      "total_albums": 1,
       "active": true,
-      "country": "",
-      "biography": "",
-      "label": "",
-      "is_solo": true
-    },
-    {
-      "spotify_id": "0Y5tJX1MQlPlqiwlOH1tJY",
-      "name": "Travis Scott",
-      "followers": 0,
-      "profile_image": "https://i.scdn.co/image/ab6761610000e5eb19c2790744c792d05570bb71",
-      "spotify_url": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY",
-      "verified": false,
-      "first_album": null,
-      "latest_album": null,
-      "total_albums": 0,
-      "active": true,
-      "country": "",
-      "biography": "",
-      "label": "",
-      "is_solo": true
-    },
-    {
-      "spotify_id": "5K4W6rqBFWDnAN6FQUkS6x",
-      "name": "Kanye West",
-      "followers": 0,
-      "profile_image": "https://i.scdn.co/image/ab6761610000e5eb6e835a500e791bf9c27a422a",
-      "spotify_url": "https://open.spotify.com/artist/5K4W6rqBFWDnAN6FQUkS6x",
-      "verified": false,
-      "first_album": null,
-      "latest_album": null,
-      "total_albums": 0,
-      "active": true,
-      "country": "",
-      "biography": "",
-      "label": "",
-      "is_solo": true
-    },
-    {
-      "spotify_id": "1HPW4jeRjXBFRoUnSvBzoD",
-      "name": "Destroy Lonely",
-      "followers": 0,
-      "profile_image": "https://i.scdn.co/image/ab6761610000e5ebc83ffef1cbf86d4d17e862d8",
-      "spotify_url": "https://open.spotify.com/artist/1HPW4jeRjXBFRoUnSvBzoD",
-      "verified": false,
-      "first_album": null,
-      "latest_album": null,
-      "total_albums": 0,
-      "active": true,
-      "country": "",
-      "biography": "",
-      "label": "",
-      "is_solo": true
-    },
-    {
-      "spotify_id": "7wlFDEWiM5OoIAt8RSli8b",
-      "name": "YoungBoy Never Broke Again",
-      "followers": 0,
-      "profile_image": "https://i.scdn.co/image/ab6761610000e5eb776e469c846c205685141317",
-      "spotify_url": "https://open.spotify.com/artist/7wlFDEWiM5OoIAt8RSli8b",
-      "verified": false,
-      "first_album": null,
-      "latest_album": null,
-      "total_albums": 0,
-      "active": true,
-      "country": "",
-      "biography": "",
-      "label": "",
-      "is_solo": true
-y_id": "7wlFDEWiM5OoIAt8RSli8b"
+      "country": "UK",
+      "biography": "British singer, songwriter and record producer.",
+      "label": "Parlophone",
+      "is_solo": true,
+      "tracks": [
+        {
+          "track_id": "21",
+          "title": "Break It Off",
+          "duration_ms": 150000,
+          "album": "To Feel Alive",
+          "release_year": 2021,
+          "popularity": 76
+        }
+      ]
     }
   ]
 }
