@@ -1,36 +1,133 @@
 {
   "artists": [
-    {
-      "name": "Nedeljko Bajic Baja",
-      "spotify_id": "4frXpPxQQZwbCu3eTGnZEw"
+          "spotify_id": "4frXpPxQQZwbCu3eTGnZEw",
+      "name": "Thundercat",
+      "genres": [],
+      "followers": 1604959,
+      "popularity": 70,
+      "profile_image": "https://i.scdn.co/image/ab6761610000e5eb6941830307896269157f7dd4",
+      "spotify_url": "https://open.spotify.com/artist/4frXpPxQQZwbCu3eTGnZEw",
+      "verified": true,
+      "first_album": null,
+      "latest_album": null,
+      "total_albums": 0,
+      "active": true,
+      "country": "",
+      "biography": "",
+      "label": "",
+      "is_solo": true
     },
     {
-      "name": "SSIO",
-      "spotify_id": "0Cbk0v3K8hU6J7tP0s4h6n"
+      "spotify_id": "0Cbk0v3K8hU6J7tP0s4h6n",
+      "followers": 0,
+      "profile_image": null,
+      "spotify_url": null,
+      "verified": false,
+      "first_album": null,
+      "latest_album": null,
+      "total_albums": 0,
+      "active": true,
+      "country": "",
+      "biography": "",
+      "label": "",
+      "is_solo": true
     },
     {
+      "spotify_id": "6x9QLdzo6eBZxJ1bHsDkjg",
       "name": "Sisqo",
-      "spotify_id": "6x9QLdzo6eBZxJ1bHsDkjg"
+      "followers": 0,
+      "profile_image": "https://i.scdn.co/image/ab6761610000e5eb1093c7b30b7d20a1c9c3229e",
+      "spotify_url": "https://open.spotify.com/artist/6x9QLdzo6eBZxJ1bHsDkjg",
+      "verified": false,
+      "first_album": null,
+      "latest_album": null,
+      "total_albums": 0,
+      "active": true,
+      "country": "",
+      "biography": "",
+      "label": "",
+      "is_solo": true
     },
     {
+      "spotify_id": "78rUTD7y6Cy67W1RVzYs7t",
       "name": "PinkPantheress",
-      "spotify_id": "78rUTD7y6Cy67W1RVzYs7t"
+      "followers": 0,
+      "profile_image": "https://i.scdn.co/image/ab6761610000e5eb6bf10d74063b45938f5d8656",
+      "spotify_url": "https://open.spotify.com/artist/78rUTD7y6Cy67W1RVzYs7t",
+      "verified": false,
+      "first_album": null,
+      "latest_album": null,
+      "total_albums": 0,
+      "active": true,
+      "country": "",
+      "biography": "",
+      "label": "",
+      "is_solo": true
     },
     {
+      "spotify_id": "0Y5tJX1MQlPlqiwlOH1tJY",
       "name": "Travis Scott",
-      "spotify_id": "0Y5tJX1MQlPlqiwlOH1tJY"
+      "followers": 0,
+      "profile_image": "https://i.scdn.co/image/ab6761610000e5eb19c2790744c792d05570bb71",
+      "spotify_url": "https://open.spotify.com/artist/0Y5tJX1MQlPlqiwlOH1tJY",
+      "verified": false,
+      "first_album": null,
+      "latest_album": null,
+      "total_albums": 0,
+      "active": true,
+      "country": "",
+      "biography": "",
+      "label": "",
+      "is_solo": true
     },
     {
+      "spotify_id": "5K4W6rqBFWDnAN6FQUkS6x",
       "name": "Kanye West",
-      "spotify_id": "5K4W6rqBFWDnAN6FQUkS6x"
+      "followers": 0,
+      "profile_image": "https://i.scdn.co/image/ab6761610000e5eb6e835a500e791bf9c27a422a",
+      "spotify_url": "https://open.spotify.com/artist/5K4W6rqBFWDnAN6FQUkS6x",
+      "verified": false,
+      "first_album": null,
+      "latest_album": null,
+      "total_albums": 0,
+      "active": true,
+      "country": "",
+      "biography": "",
+      "label": "",
+      "is_solo": true
     },
     {
+      "spotify_id": "1HPW4jeRjXBFRoUnSvBzoD",
       "name": "Destroy Lonely",
-      "spotify_id": "1HPW4jeRjXBFRoUnSvBzoD"
+      "followers": 0,
+      "profile_image": "https://i.scdn.co/image/ab6761610000e5ebc83ffef1cbf86d4d17e862d8",
+      "spotify_url": "https://open.spotify.com/artist/1HPW4jeRjXBFRoUnSvBzoD",
+      "verified": false,
+      "first_album": null,
+      "latest_album": null,
+      "total_albums": 0,
+      "active": true,
+      "country": "",
+      "biography": "",
+      "label": "",
+      "is_solo": true
     },
     {
+      "spotify_id": "7wlFDEWiM5OoIAt8RSli8b",
       "name": "YoungBoy Never Broke Again",
-      "spotify_id": "7wlFDEWiM5OoIAt8RSli8b"
+      "followers": 0,
+      "profile_image": "https://i.scdn.co/image/ab6761610000e5eb776e469c846c205685141317",
+      "spotify_url": "https://open.spotify.com/artist/7wlFDEWiM5OoIAt8RSli8b",
+      "verified": false,
+      "first_album": null,
+      "latest_album": null,
+      "total_albums": 0,
+      "active": true,
+      "country": "",
+      "biography": "",
+      "label": "",
+      "is_solo": true
+y_id": "7wlFDEWiM5OoIAt8RSli8b"
     }
   ]
 }

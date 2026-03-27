@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const fetch = require("node-fetch");
 const cors = require("cors");
@@ -19,7 +20,6 @@ const SPOTIFY_SCOPES =
   ].join(" ");
 
 if (!SPOTIFY_CLIENT_ID || !SPOTIFY_CLIENT_SECRET) {
-  // Don't crash hard in dev containers; return clear runtime errors instead.
   console.warn("Missing SPOTIFY_CLIENT_ID or SPOTIFY_CLIENT_SECRET in env.");
 }
 
@@ -208,10 +208,44 @@ app.get("/spotify/me", async (req, res) => {
   }
 });
 
+app.get("/spotify/search", async (req, res) => {
+  try {
+    const { q } = req.query;
+    if (!q) return res.status(400).json({ error: "missing_query" });
+
+    const refreshToken = req.cookies[REFRESH_COOKIE];
+    if (!refreshToken) return res.status(401).json({ error: "not_logged_in" });
+
+    const refreshed = await refreshAccessToken(refreshToken);
+    const data = await spotifyGet(
+      `/search?q=${encodeURIComponent(q)}&type=artist&limit=12`,
+      refreshed.access_token
+    );
+    res.json(data.artists.items);
+  } catch (e) {
+    res.status(500).json({ error: "search_failed", details: String(e?.message || e) });
+  }
+});
+
+app.get("/spotify/artist/:id/top-tracks", async (req, res) => {
+  try {
+    const refreshToken = req.cookies[REFRESH_COOKIE];
+    if (!refreshToken) return res.status(401).json({ error: "not_logged_in" });
+
+    const refreshed = await refreshAccessToken(refreshToken);
+    const data = await spotifyGet(
+      `/artists/${req.params.id}/top-tracks?market=DE`,
+      refreshed.access_token
+    );
+    res.json(data.tracks);
+  } catch (e) {
+    res.status(500).json({ error: "tracks_failed", details: String(e?.message || e) });
+  }
+});
+
 app.listen(PORT, () => {
   console.log(`spotify-auth listening on ${PORT}`);
   console.log(`FRONTEND_URL=${FRONTEND_URL}`);
   console.log(`BACKEND_URL=${BACKEND_URL}`);
   console.log(`Redirect URI: ${BACKEND_URL}/spotify/callback`);
 });
-

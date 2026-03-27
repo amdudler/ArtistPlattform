@@ -26,3 +26,6 @@ Hier ist unser aktuelles Notion-Protokoll: [Notion-Link](https://ambitious-nymph
 
 ## Changelog
 - 18.02.2026: README erstellt und Notion-Link eingefügt
+
+## Changelog
+- 26.03.2026: API funktioniert, Fehler wurden behoben. ClientID, ClientSecret und Backlog für unsere Website und zu unserer Spotify App (Spotify for Developer) funktionieren können kommunizieren. Um den Server richtig zu starten, muss man 2 Terminals offen haben. Ein Terminal muss unter '\frontend' mit 'npm start' und das andere Terminal unter '\backend\spotify-auth' mit 'npm start' bedient werden. 
