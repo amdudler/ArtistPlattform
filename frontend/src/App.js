@@ -1,150 +1,141 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useEffect } from "react";
+import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
+import { FiHome, FiSearch, FiMusic, FiBarChart2, FiUser, FiLogOut, FiLogIn } from "react-icons/fi";
+import { clearAuth, getAuthToken, spotifyLoginUrl, spotifyLogout } from "./api";
+import Dashboard from "./pages/Dashboard";
+import Search from "./pages/Search";
+import Analyze from "./pages/Analyze";
+import Compare from "./pages/Compare";
+import ArtistDetail from "./pages/ArtistDetail";
+import AuthPage from "./pages/AuthPage";
+import Profile from "./pages/Profile";
 import "./App.css";
 
-const BACKEND = process.env.REACT_APP_SPOTIFY_BACKEND_URL || "http://localhost:5050";
-
-function formatNumber(n) {
-  if (n >= 1000000) return (n / 1000000).toFixed(1) + "M";
-  if (n >= 1000) return (n / 1000).toFixed(1) + "K";
-  return String(n);
-}
-
 export default function App() {
-  const [query, setQuery] = useState("");
-  const [artists, setArtists] = useState([]);
-  const [selected, setSelected] = useState(null);
-  const [tracks, setTracks] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [authUser, setAuthUser] = useState(null);
+  const [spotifyUser, setSpotifyUser] = useState(null);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const navigate = useNavigate();
 
-  const login = () => {
-    window.location.href = `${BACKEND}/spotify/login`;
+  useEffect(() => {
+    try {
+      const stored = localStorage.getItem("authUser");
+      if (stored) setAuthUser(JSON.parse(stored));
+    } catch {}
+    try {
+      const stored = localStorage.getItem("spotifyUser");
+      if (stored) setSpotifyUser(JSON.parse(stored));
+    } catch {}
+  }, []);
+
+  const handleLogout = async () => {
+    try { await spotifyLogout(); } catch {}
+    clearAuth();
+    setAuthUser(null);
+    setSpotifyUser(null);
+    navigate("/");
   };
 
-  const search = useCallback(async () => {
-    const q = query.trim();
-    if (!q) return;
-    setLoading(true);
-    setError("");
-    setSelected(null);
-    try {
-      const res = await fetch(
-        `${BACKEND}/spotify/search?q=${encodeURIComponent(q)}`,
-        { credentials: "include" }
-      );
-      if (res.status === 401) {
-        setError("Bitte zuerst mit Spotify einloggen.");
-        setArtists([]);
-        return;
-      }
-      const data = await res.json();
-      setArtists(data);
-    } catch (e) {
-      setError("Suche fehlgeschlagen.");
-    } finally {
-      setLoading(false);
-    }
-  }, [query]);
-
-  const openArtist = async (artist) => {
-    setSelected(artist);
-    setTracks([]);
-    try {
-      const res = await fetch(
-        `${BACKEND}/spotify/artist/${artist.id}/top-tracks`,
-        { credentials: "include" }
-      );
-      const data = await res.json();
-      setTracks(data.slice(0, 5));
-    } catch (e) { }
+  const handleAuthSuccess = (user) => {
+    setAuthUser(user);
+    navigate("/");
   };
+
+  const isLoggedIn = !!authUser || !!getAuthToken();
 
   return (
-    <div className="page">
-      <div className="container">
-
-        <div className="header">
-          <h1 className="title">🎵 Artist Search</h1>
-          <button onClick={login} className="loginBtn">Login with Spotify</button>
+    <div className="app-layout">
+      {/* ── Sidebar ── */}
+      <nav className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+        <div className="sidebar-brand">
+          <div className="sidebar-logo">
+            <svg viewBox="0 0 32 32" fill="none">
+              <defs>
+                <linearGradient id="logoGrad" x1="0" y1="0" x2="32" y2="32">
+                  <stop offset="0%" stopColor="#8b5cf6" />
+                  <stop offset="100%" stopColor="#6366f1" />
+                </linearGradient>
+              </defs>
+              <circle cx="16" cy="16" r="15" stroke="url(#logoGrad)" strokeWidth="2" fill="none" />
+              <path d="M10 20 Q16 8 22 20" stroke="url(#logoGrad)" strokeWidth="2.5" strokeLinecap="round" fill="none" />
+              <circle cx="16" cy="12" r="2" fill="#8b5cf6" />
+            </svg>
+          </div>
+          <span className="sidebar-title">Artist Platform</span>
         </div>
 
-        <div className="searchRow">
-          <input
-            className="search"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && search()}
-            placeholder="Künstler suchen..."
-          />
-          <button onClick={search} className="searchBtn">Suchen</button>
+        <div className="sidebar-nav">
+          <NavLink to="/" end className="nav-item" onClick={() => setSidebarOpen(false)}>
+            <FiHome /> <span>Dashboard</span>
+          </NavLink>
+          <NavLink to="/search" className="nav-item" onClick={() => setSidebarOpen(false)}>
+            <FiSearch /> <span>Suche</span>
+          </NavLink>
+          <NavLink to="/analyze" className="nav-item" onClick={() => setSidebarOpen(false)}>
+            <FiMusic /> <span>Analyse</span>
+          </NavLink>
+          <NavLink to="/compare" className="nav-item" onClick={() => setSidebarOpen(false)}>
+            <FiBarChart2 /> <span>Vergleich</span>
+          </NavLink>
         </div>
 
-        {error && <p className="error">{error}</p>}
-        {loading && <p className="loading">⏳ Lädt...</p>}
-
-        {selected && (
-          <div className="detail">
-            <button className="backBtn" onClick={() => setSelected(null)}>← Zurück</button>
-            <div className="detailHeader">
-              {selected.images[0]
-                ? <img src={selected.images[0].url} alt={selected.name} className="detailImg" />
-                : <div className="noImg">🎤</div>
-              }
-              <div className="detailInfo">
-                <h2>{selected.name}</h2>
-                <span className="stat">👥 {formatNumber(selected.followers.total)} Follower</span>
-                <span className="stat">📊 {selected.popularity}/100</span>
-                <div className="popularityBar">
-                  <div className="popularityFill" style={{ width: `${selected.popularity}%` }} />
-                </div>
-                <div className="genres">
-                  {selected.genres.map((g) => <span key={g} className="genreTag">{g}</span>)}
-                </div>
-                <a href={selected.external_urls.spotify} target="_blank" rel="noopener noreferrer" className="spotifyLink">
-                  Auf Spotify öffnen →
-                </a>
+        <div className="sidebar-bottom">
+          {!spotifyUser && (
+            <a href={spotifyLoginUrl()} className="spotify-connect-btn">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+              </svg>
+              Spotify verbinden
+            </a>
+          )}
+          {spotifyUser && (
+            <div className="spotify-connected">
+              <div className="spotify-badge">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#1DB954">
+                  <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2z"/>
+                </svg>
+                <span>{spotifyUser.display_name}</span>
               </div>
             </div>
+          )}
 
-            {tracks.length > 0 && (
-              <div className="topTracks">
-                <h3>🔥 Top Tracks</h3>
-                {tracks.map((track, i) => (
-                  <div key={track.id} className="track">
-                    <span className="trackNum">{i + 1}</span>
-                    <img src={track.album.images[2]?.url} alt="" className="trackImg" />
-                    <div className="trackInfo">
-                      <div className="trackName">{track.name}</div>
-                      <div className="trackAlbum">{track.album.name}</div>
-                    </div>
-                    {track.preview_url
-                      ? <audio controls src={track.preview_url} />
-                      : <span className="noPreview">Keine Vorschau</span>
-                    }
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        )}
+          <div className="sidebar-divider" />
 
-        {!selected && (
-          <div className="grid">
-            {artists.map((artist) => (
-              <div key={artist.id} className="card" onClick={() => openArtist(artist)}>
-                {artist.images[0]
-                  ? <img src={artist.images[0].url} alt={artist.name} className="cardImg" />
-                  : <div className="noImg">🎤</div>
-                }
-                <h3>{artist.name}</h3>
-                <p className="followers">{formatNumber(artist.followers.total)} Follower</p>
-                <p className="genres2">{artist.genres.slice(0, 2).join(", ") || "—"}</p>
-              </div>
-            ))}
-          </div>
-        )}
+          {isLoggedIn ? (
+            <>
+              <NavLink to="/profile" className="nav-item" onClick={() => setSidebarOpen(false)}>
+                <FiUser /> <span>{authUser?.displayName || "Profil"}</span>
+              </NavLink>
+              <button onClick={handleLogout} className="nav-item nav-btn">
+                <FiLogOut /> <span>Logout</span>
+              </button>
+            </>
+          ) : (
+            <NavLink to="/auth" className="nav-item" onClick={() => setSidebarOpen(false)}>
+              <FiLogIn /> <span>Anmelden</span>
+            </NavLink>
+          )}
+        </div>
+      </nav>
 
-      </div>
+      {/* ── Mobile Header ── */}
+      <button className="mobile-toggle" onClick={() => setSidebarOpen(!sidebarOpen)} aria-label="Menu">
+        <span /><span /><span />
+      </button>
+      {sidebarOpen && <div className="sidebar-overlay" onClick={() => setSidebarOpen(false)} />}
+
+      {/* ── Main Content ── */}
+      <main className="main-content">
+        <Routes>
+          <Route path="/" element={<Dashboard spotifyUser={spotifyUser} />} />
+          <Route path="/search" element={<Search />} />
+          <Route path="/analyze" element={<Analyze />} />
+          <Route path="/compare" element={<Compare />} />
+          <Route path="/artist/:id" element={<ArtistDetail />} />
+          <Route path="/auth" element={<AuthPage onSuccess={handleAuthSuccess} />} />
+          <Route path="/profile" element={<Profile user={authUser} setUser={setAuthUser} onLogout={handleLogout} />} />
+        </Routes>
+      </main>
     </div>
   );
 }

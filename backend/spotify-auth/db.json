@@ -1,0 +1,16 @@
+{
+  "users": [
+    {
+      "id": "440269e5-7e05-46f5-8c96-b6823fd25463",
+      "email": "marco_bischof@icloud.com",
+      "password": "$2b$12$7RDYlQieZtJI2I9.IweCT.Edn/U1xAgUxTrgsqtmjvq8zZtg7rGDi",
+      "displayName": "sumiting",
+      "avatar": null,
+      "bio": "",
+      "spotifyLinked": false,
+      "createdAt": "2026-04-07T21:19:51.516Z"
+    }
+  ],
+  "savedArtists": [],
+  "analyzedSongs": []
+}

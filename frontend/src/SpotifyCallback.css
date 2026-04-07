@@ -1,0 +1,306 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+.cbPage {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f1a 0%, #1a1a2e 50%, #0d1117 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  padding: 20px;
+}
+
+.cbCard {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  padding: 48px 40px;
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  color: #fff;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* ── Loading ── */
+.cbSpinner {
+  width: 52px;
+  height: 52px;
+  border: 3px solid rgba(29, 185, 84, 0.2);
+  border-top-color: #1DB954;
+  border-radius: 50%;
+  animation: spin 0.9s linear infinite;
+  margin: 0 auto 24px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.cbLoadText {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+/* ── Error ── */
+.cbErrorIcon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(255, 80, 80, 0.15);
+  border: 2px solid rgba(255, 80, 80, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: #ff5050;
+  margin: 0 auto 20px;
+}
+
+.cbErrorTitle {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+  color: #ff6b6b;
+}
+
+.cbErrorMsg {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+  word-break: break-word;
+}
+
+.cbBackBtn {
+  display: inline-block;
+  padding: 12px 28px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.2s;
+}
+.cbBackBtn:hover { background: rgba(255, 255, 255, 0.2); }
+
+/* ── Success ── */
+.cbSuccess { animation: fadeUp 0.5s ease; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* SVG check animation */
+.cbCheckWrap {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 20px;
+}
+
+.cbCheck { width: 64px; height: 64px; }
+
+.cbCheckCircle {
+  stroke: #1DB954;
+  stroke-width: 2;
+  stroke-dasharray: 157;
+  stroke-dashoffset: 157;
+  animation: drawCircle 0.6s ease forwards;
+}
+@keyframes drawCircle {
+  to { stroke-dashoffset: 0; }
+}
+
+.cbCheckMark {
+  stroke: #1DB954;
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: drawMark 0.4s 0.5s ease forwards;
+}
+@keyframes drawMark {
+  to { stroke-dashoffset: 0; }
+}
+
+.cbWelcome {
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 28px;
+  background: linear-gradient(90deg, #1DB954, #1ed760);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Profile Card ── */
+.cbProfileCard {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 28px 24px;
+  margin-bottom: 28px;
+}
+
+.cbAvatarWrap {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 16px;
+}
+
+.cbAvatar {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #1DB954;
+  box-shadow: 0 0 20px rgba(29, 185, 84, 0.3);
+  display: block;
+}
+
+.cbAvatarFallback {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1DB954, #158a3e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+  border: 3px solid #1DB954;
+}
+
+.cbSpotifyBadge {
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #1DB954;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #1a1a2e;
+}
+
+.cbName {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.cbEmail {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 0.85rem;
+  margin-bottom: 14px;
+}
+
+.cbBadges {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 18px;
+}
+
+.cbBadge {
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.cbPremium {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #fff;
+}
+
+.cbFree {
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.cbCountry {
+  background: rgba(29, 185, 84, 0.15);
+  color: #1DB954;
+  border: 1px solid rgba(29, 185, 84, 0.3);
+}
+
+.cbStats {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+}
+
+.cbStat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.cbStatNum {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #1DB954;
+}
+
+.cbStatLabel {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.45);
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+}
+
+/* ── Redirect dots ── */
+.cbRedirectRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.cbDots {
+  display: flex;
+  gap: 5px;
+}
+
+.cbDots span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #1DB954;
+  animation: blink 1.2s ease-in-out infinite;
+}
+.cbDots span:nth-child(2) { animation-delay: 0.2s; }
+.cbDots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes blink {
+  0%, 80%, 100% { opacity: 0.2; transform: scale(0.8); }
+  40% { opacity: 1; transform: scale(1); }
+}
+
+.cbRedirectText {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+}
+
+/* ── Go Button ── */
+.cbGoBtn {
+  display: inline-block;
+  padding: 14px 36px;
+  background: #1DB954;
+  color: #fff;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  transition: background 0.2s, transform 0.1s;
+}
+.cbGoBtn:hover { background: #1ed760; transform: scale(1.03); }
+.cbGoBtn:active { transform: scale(0.98); }
