@@ -28,4 +28,88 @@ Hier ist unser aktuelles Notion-Protokoll: [Notion-Link](https://ambitious-nymph
 - 18.02.2026: README erstellt und Notion-Link eingefügt
 
 ## Changelog
-- 26.03.2026: API funktioniert, Fehler wurden behoben. ClientID, ClientSecret und Backlog für unsere Website und zu unserer Spotify App (Spotify for Developer) funktionieren können kommunizieren. Um den Server richtig zu starten, muss man 2 Terminals offen haben. Ein Terminal muss unter '\frontend' mit 'npm start' und das andere Terminal unter '\backend\spotify-auth' mit 'npm start' bedient werden. 
+- 26.03.2026: API funktioniert, Fehler wurden behoben. ClientID, ClientSecret und Backlog für unsere Website und zu unserer Spotify App (Spotify for Developer) funktionieren können kommunizieren. Um den Server richtig zu starten, muss man 2 Terminals offen haben. Ein Terminal muss unter '\frontend' mit 'npm start' und das andere Terminal unter '\backend\spotify-auth' mit 'npm start' bedient werden.
+
+
+# ArtistPlattform 🎨
+
+## 📌 Projektbeschreibung
+
+Dieses Projekt ist eine Plattform für Künstler.
+Das Backend basiert auf Directus.
+
+---
+
+## ⚙️ Setup (Directus)
+
+### 1. Repository klonen
+
+```bash
+git clone https://github.com/amdudler/ArtistPlattform.git
+cd ArtistPlattform/directus
+```
+
+---
+
+### 2. Dependencies installieren
+
+```bash
+npm install
+```
+
+---
+
+### 3. .env Datei erstellen
+
+Erstelle eine `.env` Datei im `directus` Ordner.
+
+Beispiel:
+
+```env
+KEY=your-secret-key
+SECRET=your-secret
+
+DB_CLIENT=postgres
+DB_HOST=localhost
+DB_PORT=5432
+DB_DATABASE=directus
+DB_USER=user
+DB_PASSWORD=password
+
+ADMIN_EMAIL=admin@example.com
+ADMIN_PASSWORD=admin
+```
+
+---
+
+### 4. Directus starten
+
+```bash
+npx directus start
+```
+
+---
+
+## 🐳 Optional: Docker starten
+
+Falls Docker verwendet wird:
+
+```bash
+docker compose up
+```
+
+---
+
+## 👥 Team Hinweis
+
+* `.env` Dateien werden **nicht** ins Repository hochgeladen
+* Jeder Entwickler verwendet eigene Zugangsdaten
+* Bei Fragen einfach im Team nachfragen
+
+---
+
+## 🚀 Technologien
+
+* Directus
+* Node.js
+* (optional: Docker)
