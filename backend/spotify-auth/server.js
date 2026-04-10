@@ -92,7 +92,8 @@ function buildAuthorizeUrl({ state }) {
     client_id: SPOTIFY_CLIENT_ID || "",
     scope: SPOTIFY_SCOPES,
     redirect_uri: redirectUri,
-    state
+    state,
+    show_dialog: "true"
   });
   return `https://accounts.spotify.com/authorize?${params.toString()}`;
 }
@@ -412,7 +413,7 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: FRONTEND_URL,
+    origin: ["http://127.0.0.1:3000", "http://localhost:3000"],
     credentials: true
   })
 );

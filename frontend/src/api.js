@@ -144,6 +144,11 @@ export async function spotifyLogout() {
   localStorage.removeItem("spotifyUser");
 }
 
+export async function spotifyDisconnect() {
+  await apiFetch("/spotify/disconnect", { method: "POST" });
+  localStorage.removeItem("spotifyUser");
+}
+
 export async function searchArtists(q) {
   return apiJson(`/spotify/search?q=${encodeURIComponent(q)}`);
 }

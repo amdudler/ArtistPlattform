@@ -75,7 +75,7 @@ export default function Analyze() {
     <div>
       <div className="page-header">
         <h1 className="page-title">Song-Analyse</h1>
-        <p className="page-subtitle">Analysiere einen Song: Genre, Subgenre, Audio-Features, Drumkits & Plugins. (US-14 bis US-17)</p>
+        <p className="page-subtitle">Analysiere einen Song: Genre, Subgenre, Audio-Features, Drumkits & Plugins.</p>
       </div>
 
       {/* ── Suche ── */}

@@ -97,7 +97,7 @@ export default function Compare() {
     <div>
       <div className="page-header">
         <h1 className="page-title">Song-Vergleich</h1>
-        <p className="page-subtitle">Vergleiche zwei Songs direkt miteinander. (US-18)</p>
+        <p className="page-subtitle">Vergleiche zwei Songs direkt miteinander.</p>
       </div>
 
       {/* ── Track Selection ── */}

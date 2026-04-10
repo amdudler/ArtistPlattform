@@ -29,7 +29,7 @@ export default function Search() {
     <div>
       <div className="page-header">
         <h1 className="page-title">Künstler suchen</h1>
-        <p className="page-subtitle">Finde Künstler und erkunde ihre Musik, Alben und Labels. (US-10)</p>
+        <p className="page-subtitle">Finde Künstler und erkunde ihre Musik, Alben und Labels.</p>
       </div>
 
       <div className="search-row">
